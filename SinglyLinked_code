@@ -1,0 +1,92 @@
+// Java program to find n'th node in linked list
+import java.util.* ;
+
+class Node {
+	int data;
+	Node next;
+	Node(int d)
+	{
+		data = d;
+		next = null;
+	}
+}
+
+class singly_list {
+    ArrayList array1 = new ArrayList();
+	Node head; // the head of list
+
+	/* Takes index as argument and return data at index*/
+	public int GetNth(int index)
+	{
+		Node current = head;
+		int count = 0; /* index of Node we are
+						currently looking at */
+		while (current != null)
+		{
+			if (count == index)
+				return current.data;
+			count++;
+			current = current.next;
+		}
+
+		/* if we get to this line, the caller was asking
+		for a non-existent element so we assert fail */
+		assert (false);
+		return 0;
+	}
+
+	/* Given a reference to the head of a list and an int,
+	inserts a new Node on the front of the list. */
+	public void push(int new_data)
+	{
+
+		/* 1. alloc the Node and put data*/
+		Node new_Node = new Node(new_data);
+
+		/* 2. Make next of new Node as head */
+		new_Node.next = head;
+
+		/* 3. Move the head to point to new Node */
+		head = new_Node;
+	}
+       
+        
+            
+        void ret_time(long totaltime){
+
+            array1.add(totaltime);
+
+        }
+
+        void print_time(){
+            for(int l = 0;l<10000;l++)
+            System.out.println(array1.get(l));
+
+        }
+	/* Driver code*/
+	public static void main(String[] args){
+            
+                
+            Random r = new Random();
+            /* Start with empty list */
+            singly_list list1 = new singly_list();
+            singly_list list2 = new singly_list();
+
+for(int i = 0;i<100000;i++){
+    list1.push(r.nextInt(6000000));
+    long inTime = System.nanoTime(); //using System library
+
+    System.out.println("Element at index i is " + list1.GetNth(i));
+
+    long offTime = System.nanoTime(); // take the system time
+    //at this point
+    long totalTime = offTime - inTime; // calculate the time difference
+    //System.out.println(totalTime); //record the time to the output
+    list2.ret_time(totalTime);
+}
+    System.out.println("===================================");
+    list2.print_time();
+    /* Check the count function */
+		
+	}
+}
