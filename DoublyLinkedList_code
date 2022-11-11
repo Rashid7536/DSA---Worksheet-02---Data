@@ -1,0 +1,46 @@
+
+import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Random;
+
+public class doubly_ll {
+    ArrayList array1 = new ArrayList();
+            
+    void ret_time(long totaltime){
+        array1.add(totaltime);
+    }
+    
+    void print_time(){
+        for(int l = 0;l<10000;l++)
+        System.out.println(array1.get(l));
+    
+    }
+    public static void main(String args[]) {
+
+            // Creating an empty LinkedList
+            LinkedList<Integer> list = new LinkedList<Integer>();
+            LinkedList<Integer> list2 = new LinkedList<Integer>();
+            doubly_ll db = new doubly_ll();
+            Random r = new Random();
+
+            for(int i = 0;i<10000;i++){
+                
+                // Use add() method to add elements in the list
+                list.add(r.nextInt(5000000));
+                list2 = (LinkedList)list.clone();
+                list2.add(i, 100);
+                
+                long inTime = System.nanoTime(); //using System library
+                System.out.println(list2.indexOf(100));
+                
+                long offTime = System.nanoTime(); // take the system time
+                //at this point
+                long totalTime = offTime - inTime; // calculate the time difference
+                //System.out.println(totalTime); //record the time to the output
+                db.ret_time(totalTime);
+                
+            }
+                System.out.println("=======================");
+                db.print_time();
+            }
+}
