@@ -1,0 +1,38 @@
+import java.util.*;
+public class new_some {
+    ArrayList array1 = new ArrayList();
+            
+    void ret_time(long totaltime){
+        array1.add(totaltime);        
+    }
+    
+    void print_time(){
+        for(int l = 0;l<10000;l++)
+        System.out.println(array1.get(l));   
+    }
+    
+     public static void main(String args[]){        
+        Random rand_num = new Random();
+        // Get the ArrayList
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        ArrayList<Integer> list2 = new ArrayList<Integer>();
+        new_some db = new new_some();
+        
+        // Populate the ArrayList
+        for(int i = 0; i<10000;i++){
+            
+            list.add(rand_num.nextInt(6000000));
+            list2 = (ArrayList)list.clone();
+            long inTime = System.nanoTime(); //using System library
+                list2.add(i, 100);
+                System.out.println(list2.indexOf(100));  
+                long offTime = System.nanoTime(); // take the system time
+                //at this point
+                long totalTime = offTime - inTime; // calculate the time difference
+                //System.out.println(totalTime); //record the time to the output
+                db.ret_time(totalTime);               
+        }
+        System.out.println("=========================");
+        db.print_time();
+    }
+}
